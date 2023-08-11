@@ -196,7 +196,8 @@ values
 ('Thuê xe máy', 10000, 'chiếc', 'hỏng 1 xe'),
 ('Thuê xe đạp', 20000, 'chiếc', 'tốt'),
 ('Buffet buổi sáng', 15000, 'suất', 'đầy đủ đồ ăn, tráng miệng'),
-('Buffet buổi trưa', 90000, 'suất', 'đầy đủ đồ ăn, tráng mi');
+('Buffet buổi trưa', 90000, 'suất', 'đầy đủ đồ ăn, tráng mi'),
+('Buffet buổi tối',	16000, 'suất', 'đầy đủ đồ ăn, tráng miệng');
 
 insert into hop_dong (ngay_lam_hop_dong, ngay_ket_thuc_hop_dong, tien_dat_coc, ma_nhan_vien, ma_khach_hang, ma_dich_vu)
 values
@@ -214,7 +215,7 @@ values
 ('2021-05-25', '2021-05-27', 0, 7, 10, 1);
 
 
-insert into hop_dong_chi_tiet (so_luong, ma_hop_dong, ma_dich_vu_di_kem)
+insert into hop_dong_chi_tiet(so_luong, ma_hop_dong, ma_dich_vu_di_kem)
 values
 (5, 2, 4),
 (8, 2, 5),
@@ -224,6 +225,16 @@ values
 (1, 1, 3),
 (2, 1, 2),
 (2, 12, 2);
+
+/*CÂU 2*/ 
+select * from nhan_vien where ho_ten like 'H%' or ho_ten like 'T%' or ho_ten like 'K%' and LENGTH(ho_ten) <= 15;
+
+/*CÂU 3*/
+
+
+
+
+
 
 
 
