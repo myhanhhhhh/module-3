@@ -12,9 +12,9 @@ ten_loai_dich_vu varchar(45)
 
 create table dich_vu(
 ma_dich_vu int  primary key auto_increment,
-ten_dich_vu varchar(45),
+ten_dich_vu varchar(45) not null,
 dien_tich int,
-chi_phi_thue double,
+chi_phi_thue double not null,
 so_nguoi_toi_da int,
 ma_kieu_thue int,
 foreign key (ma_kieu_thue) references kieu_thue(ma_kieu_thue),
@@ -35,11 +35,11 @@ create table khach_hang(
 ma_khach_hang int primary key auto_increment,
 ma_loai_khach int,
 foreign key(ma_loai_khach) references loai_khach(ma_loai_khach),
-ho_va_ten varchar(45),
-ngay_sinh date,
-gioi_tinh bit(1),
-so_cmnd varchar(45),
-so_dien_thoai varchar(45),
+ho_va_ten varchar(45) not null,
+ngay_sinh date not null,
+gioi_tinh bit(1) not null,
+so_cmnd varchar(45) not null,
+so_dien_thoai varchar(45) not null,
 email varchar(45),
 dia_chi varchar(45)
 );
@@ -61,11 +61,11 @@ ten_bo_phan varchar(45)
 
 create table nhan_vien(
 ma_nhan_vien int primary key auto_increment,
-ho_ten varchar(45),
-ngay_sinh date,
-so_cmnd varchar(45),
-luong double,
-so_dien_thoai varchar(45),
+ho_ten varchar(45) not null,
+ngay_sinh date not null,
+so_cmnd varchar(45) not null,
+luong double not null,
+so_dien_thoai varchar(45) not null,
 email varchar(45),
 dia_chi varchar(45),
 ma_vi_tri int,
@@ -78,17 +78,17 @@ foreign key (ma_bo_phan) references bo_phan(ma_bo_phan)
 
 create table dich_vu_di_kem(
 ma_dich_vu_di_kem int primary key auto_increment,
-ten_dich_vu_di_kem varchar(45),
-gia double,
-don_vi varchar(45),
+ten_dich_vu_di_kem varchar(45) not null,
+gia double not null,
+don_vi varchar(45) not null,
 trang_thai varchar(45)
 );
 
 create table hop_dong(
 ma_hop_dong int primary key auto_increment,
-ngay_lam_hop_dong datetime,
-ngay_ket_thuc_hop_dong datetime,
-tien_dat_coc double,
+ngay_lam_hop_dong datetime not null,
+ngay_ket_thuc_hop_dong datetime not null,
+tien_dat_coc double not null,
 ma_nhan_vien int,
 foreign key (ma_nhan_vien) references nhan_vien (ma_nhan_vien),
 ma_khach_hang int,
