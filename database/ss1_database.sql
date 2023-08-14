@@ -19,7 +19,7 @@ update name_student set name_student = "Sang"
 where name_student = "Hanh";
 set sql_safe_updates = 1;
 
-create table class(
+create table classroom(
 id_class int primary key auto_increment,
 name_class varchar(50)
 );
