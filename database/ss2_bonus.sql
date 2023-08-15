@@ -124,3 +124,40 @@ select student.`name`, class.`name`
 from student,class
 where class.`name` ='c1121g1'
 order by student.`name` asc;
+
+-- CAU 1: Hiện thị danh sách các lớp có học viên theo học và số lượng học viên của mỗi lớp
+select class.`name`,  count(*) as so_luong
+from class
+left join student on class.id = student.class_id
+group by class.id, class.`name`;
+
+-- CAU 2: Tính điểm lớn nhất của mỗi lớp
+select class.id, class.`name`, max(student.`point`) as max_point
+from  class
+left join student on class.id = student.class_id
+group by class.id , class.`name`;
+
+-- CAU 3: Tình điểm trung bình  của từng lớp
+select class.id, class.`name`, avg(student.`point`) as avg_point
+from class
+join  student on class.id = student.class_id
+group by class.id , class.`name`;
+
+-- CAU 4: Lấy ra toàn bộ tên và ngày sinh các instructor và student ở CodeGym. Lưu ý: sử dụng union
+select `name`, birthday from instructor
+union
+select `name`, birthday from student;
+
+-- CAU 5: Lấy ra top 3 học viên có điểm cao nhất của trung tâm.
+select student.`name`, student.`point`
+from student
+order by `point` desc
+limit 3;
+
+-- CAU 6: Lấy ra các học viên có điểm số là cao nhất của trung tâm.
+select student.`name`, student.`point`
+from student
+where `point`=
+(select max(`point`)
+from student
+);

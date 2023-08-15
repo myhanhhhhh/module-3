@@ -22,7 +22,7 @@ p_name varchar(100),
 p_price double
 );
 
-create table order_detail(
+create table orders_detail(
 o_id int,
 p_id int,
 od_qty varchar(100),
@@ -44,7 +44,7 @@ value ("2006-03-21", null, 1),
 insert into products(p_name, p_price)
 value ("May Giat", 3),("Tu Lanh", 5),("Dieu Hoa", 7),("Quat", 1),("Bep Dien", 2);
 
-insert into order_detail(o_id, p_id, od_qty)
+insert into orders_detail(o_id, p_id, od_qty)
 value (1,1,3),(1,3,7),(1,4,2),(2,1,1),(3,1,8),(2,5,4),(2,3,3);
 
 select o_id, o_date, o_total_price
@@ -53,20 +53,20 @@ from orders;
 select customers.c_name, products.p_name
 from customers
 join orders on customers.c_id = orders.c_id
-join order_detail on orders.o_id = order_detail.o_id
-join products on order_detail.p_id = products.p_id;
+join orders_detail on orders.o_id = orders_detail.o_id
+join products on orders_detail.p_id = products.p_id;
 
 select customers.c_name, products.p_name
 from customers
 left join orders on customers.c_id = orders.c_id
-left join order_detail on orders.o_id = order_detail.o_id
-left join products on order_detail.p_id = products.p_id
+left join order_detail on orders.o_id = orders_detail.o_id
+left join products on orders_detail.p_id = products.p_id
 where p_name is null;
 
-select  orders.o_id, orders.o_date, sum(order_detail.od_qty*products.p_price) as total
+select  orders.o_id, orders.o_date, sum(orders_detail.od_qty*products.p_price) as total
 from orders
-join order_detail on orders.o_id = order_detail.o_id
-join products on order_detail.p_id = products.p_id
+join orders_detail on orders.o_id = orders_detail.o_id
+join products on orders_detail.p_id = products.p_id
 group by orders.o_id;
 
 
