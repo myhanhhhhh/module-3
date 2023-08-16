@@ -161,3 +161,53 @@ where `point`=
 (select max(`point`)
 from student
 );
+
+-- 1. Đánh, xóa index cho cột name trong bảng student.
+ create index name_idx on student(`name`);
+ 
+ drop index name_idx on student;
+ 
+ -- 2. Tạo view chứa thông tin id và name của student.
+create view student_view as 
+select  id, `name`
+from student;
+ 
+-- 3. Viết các store procedure có tên findByName cho các yêu cầu sau:
+--  Tham số in name nhằm mục đích lấy ra các bạn học viên có tên giống tên được truyền vào.
+--  Tham số in name, out count để đếm số lượng học viên có tên 
+--  giống với tên được truyền vào và gán vào count để hiển thị số lượng tìm được.
+--  Tham số inout name với mục đích tim ra số lượng học viên 
+--  giống tên được truyền vào và gán số lượng này lại cho chính biến name để hiển thị số lượng tìm được.
+
+DELIMITER //
+create procedure findByName(in  name_student varchar(50))
+begin 
+select *
+from student
+where `name` = name_student;
+end //
+DELIMITER //
+call findByName(`sang`);
+
+DELIMITER //
+create procedure findByName(
+in  name_student varchar(50),
+out count int)
+begin 
+select count(*) into count
+from student
+where `name` = name_student;
+end //
+DELIMITER //
+call findByName(`lien`, 2);
+
+DELIMITER //
+create procedure findByName(inout name_student varchar(50))
+begin 
+select count(*) name_student
+from student
+where `name` = name_student;
+end //
+DELIMITER //
+call findByName(`hanh`);
+

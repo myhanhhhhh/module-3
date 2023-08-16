@@ -3,7 +3,7 @@ use case_study;
 create table kieu_thue(
 ma_kieu_thue int primary key auto_increment,
 ten_kieu_thue varchar(45)
-);
+);2
 
 create table loai_dich_vu(
 ma_loai_dich_vu int primary key auto_increment,
@@ -226,11 +226,13 @@ values
 (2, 12, 2);
 
 -- CÂU 2 : Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 kí tự
-select * from nhan_vien
+select  nhan_vien.ma_nhan_vien,nhan_vien.ho_ten
+from nhan_vien
 where substring_index(ho_ten,' ',-1) like 'H%' or  substring_index(ho_ten,' ',-1) like 'T%' or  substring_index(ho_ten,' ',-1) like 'K%' and char_length(ho_ten) <= 15;
 
 -- CÂU 3: Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”. 
-select * from khach_hang 
+select khach_hang.ma_khach_hang, khach_hang.ho_va_ten, khach_hang.dia_chi
+from khach_hang 
 where timestampdiff(year,ngay_sinh,curdate()) between 18 and 50 
 and (dia_chi like '%Da Nang' or  dia_chi like '%Quảng Trị');	
 
@@ -244,7 +246,9 @@ where ten_loai_khach = 'Diamond'
 group by ma_khach_hang
 order by so_lan_dat_phong asc;
  
--- CÂU 5: Hiển thị ma_khach_hang, ho_ten, ten_loai_khach, ma_hop_dong, ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc, tong_tien (Với tổng tiền được tính theo công thức như sau: Chi Phí Thuê + Số Lượng * Giá, với Số Lượng và Giá là từ bảng dich_vu_di_kem, hop_dong_chi_tiet) cho tất cả các khách hàng đã từng đặt phòng. (những khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra).
+-- CÂU 5: Hiển thị ma_khach_hang, ho_ten, ten_loai_khach, ma_hop_dong, ten_dich_vu, ngay_lam_hop_dong, ngay_ket_thuc, tong_tien 
+-- (Với tổng tiền được tính theo công thức như sau: Chi Phí Thuê + Số Lượng * Giá, với Số Lượng và Giá là từ bảng dich_vu_di_kem, hop_dong_chi_tiet) 
+-- cho tất cả các khách hàng đã từng đặt phòng. (những khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra).
 
 select khach_hang.ma_khach_hang, khach_hang.ho_va_ten, loai_khach.ten_loai_khach, hop_dong.ma_hop_dong, dich_vu.ten_dich_vu, hop_dong.ngay_lam_hop_dong,
 hop_dong.ngay_ket_thuc_hop_dong, ifnull((hop_dong_chi_tiet.so_luong * dich_vu_di_kem.gia),0) + ifnull((dich_vu.chi_phi_thue),0) as tong_tien
@@ -358,16 +362,58 @@ from nhan_vien
 join trinh_do on nhan_vien.ma_trinh_do = trinh_do.ma_trinh_do
 join bo_phan on nhan_vien.ma_bo_phan = bo_phan.ma_bo_phan
 join hop_dong on nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
-where year(ngay_lam_hop_dong) between 2020 and 2021
+where year(ngay_lam_hop_dong) in (2020,2021)
 group by hop_dong.ma_nhan_vien
 having so_luong_hop_dong < 4;
 
 -- CÂU 16: Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2019 đến năm 2021.
-select nhan_vien.ma_nhan_vien, nhan_vien.ho_ten, count(hop_dong.ma_nhan_vien) as so_luong_hop_dong
+alter table nhan_vien 
+add is_delete bit(1) default 0;
+set sql_safe_updates = 0;
+update nhan_vien 
+set is_delete = 1
+where nhan_vien.ma_nhan_vien not in(
+select hop_dong.ma_nhan_vien 
+from hop_dong);
+set sql_safe_updates = 1;
+select nhan_vien.ma_nhan_vien, nhan_vien.ho_ten
 from nhan_vien
-left join hop_dong on nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
-left join hop_dong_chi_tiet on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
-where year(hop_dong.ngay_lam_hop_dong) between 2019 and 2021
-group by hop_dong.ma_nhan_vien
-having so_luong_hop_dong < 1; 
+where is_delete = 0;
+-- CÂU 17:	Cập nhật thông tin những khách hàng có ten_loai_khach từ Platinum lên Diamond, chỉ cập nhật những khách hàng
+--  đã từng đặt phòng với Tổng Tiền thanh toán trong năm 2021 là lớn hơn 10.000.000 VNĐ.
+update khach_hang
+set ma_loai_khach = 1
+where ma_khach_hang in 
+(select temp.ma_khach_hang 
+from (select khach_hang.ma_khach_hang from khach_hang 
+join loai_khach on loai_khach.ma_loai_khach = khach_hang.ma_loai_khach
+join hop_dong on hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
+join hop_dong_chi_tiet on hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong  
+join dich_vu_di_kem on dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
+join dich_vu on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
+where loai_khach.ten_loai_khach = "Platinum" and year(hop_dong.ngay_lam_hop_dong) = 2021
+group by loai_khach.ma_loai_khach
+having sum(ifnull((hop_dong_chi_tiet.so_luong * dich_vu_di_kem.gia),0) + dich_vu.chi_phi_thue) > 10000000) as temp);
+select khach_hang.ma_khach_hang , khach_hang.ho_va_ten
+from khach_hang;
 
+-- CÂU 18: Xóa những khách hàng có hợp đồng trước năm 2021 (chú ý ràng buộc giữa các bảng).
+alter table khach_hang 
+add deleted bit(1) default 0;
+
+set sql_safe_updates = 0;
+
+update khach_hang 
+set deleted = 1
+where ma_khach_hang in (
+select ma_khach_hang 
+from hop_dong
+where year(ngay_lam_hop_dong) < 2021);
+
+set sql_safe_updates = 1;
+
+select khach_hang.ma_khach_hang, khach_hang.ho_va_ten
+from khach_hang
+where deleted = 0;
+
+-- CÂU 19: Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
