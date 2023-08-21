@@ -1,0 +1,99 @@
+* {
+    font-family: Arial sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+#container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 80% 1fr;
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas:
+            "header header login"
+            "link content ads"
+            "footer footer footer"
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    background-color: black;
+    grid-area: header;
+    line-height: 50px;
+
+}
+
+.header a {
+    padding: 15px;
+    color: gray;
+}
+
+.login-icon {
+    grid-area: login;
+    text-align: center;
+    line-height: 50px;
+    background-color: black;
+
+
+}
+
+.login-icon .icon {
+    font-size: 20px;
+    position: relative;
+    top: 5px;
+    color: gray;
+}
+
+.login{
+    color: gray;
+}
+
+.header a:hover, .login:hover, .icon:hover {
+    background-color: black;
+    color: lightgray;
+}
+
+.link, .ads {
+    background-color: lightgray;
+}
+
+.link a {
+    grid-area: link;
+    text-align: center;
+    display: block;
+    padding-top: 20px;
+    color: royalblue;
+}
+
+.content {
+    grid-area: content;
+    padding: 20px;
+}
+
+.content p {
+    margin: 20px;
+}
+
+.ads a {
+    grid-area: ads;
+    text-align: center;
+    display: block;
+    border: 1px solid grey;
+    padding: 15px;
+    margin: 20px;
+    background-color: white;
+    color: black;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: black;
+    color: white;
+    grid-column: 1/4;
+    text-align: center;
+    line-height: 50px;
+}
+
