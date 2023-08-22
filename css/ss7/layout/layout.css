@@ -90,7 +90,6 @@ a {
     grid-area: footer;
     background-color: black;
     color: white;
-    grid-column: 1/4;
     text-align: center;
     line-height: 50px;
 }
