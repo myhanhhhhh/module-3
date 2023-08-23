@@ -1,0 +1,36 @@
+nav{
+    font-size: 13px;
+}
+
+.login-icon {
+    grid-area: login;
+    text-align: center;
+    line-height: 200px;
+}
+
+
+.login-icon .icon {
+    width: 100px;
+    position: relative;
+    top: 10px;
+    color: black;
+
+}
+
+.header {
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+}
+
+.row h1{
+    font-size: 70px;
+}
+.row p{
+    font-size: 30px;
+}
+
+span{
+    display: inline-block;
+}
