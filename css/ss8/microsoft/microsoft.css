@@ -2,13 +2,6 @@ nav{
     font-size: 13px;
 }
 
-.login-icon {
-    grid-area: login;
-    text-align: center;
-    line-height: 200px;
-
-}
-
 
 .login-icon .icon {
     width: 500px;
@@ -17,9 +10,15 @@ nav{
     color: black;
 }
 
-.header {
-    background-color: dodgerblue;
+.header  {
+    background-color: #4A4A4A;
     color: white;
+    text-align: center;
+    line-height: 50px;
+}
+.headers {
+    background-color: lightgray;
+    color: black;
     text-align: center;
     line-height: 50px;
 }
