@@ -33,3 +33,7 @@ nav{
 .note .laptops{
     display: inline-block;
 }
+
+.row a{
+    color: black;
+}
