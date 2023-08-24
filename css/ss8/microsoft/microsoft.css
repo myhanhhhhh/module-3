@@ -1,17 +1,17 @@
 nav{
-    font-size: 13px;
+    font-size: 14px;
 }
 
 
-.login-icon .icon {
-    width: 500px;
-    position: relative;
-    top: 10px;
-    color: black;
-}
+/*.login-icon .icon {*/
+/*    width: 500px;*/
+/*    position: relative;*/
+/*    top: 10px;*/
+/*    color: darkred;*/
+/*}*/
 
 .header  {
-    background-color: black;
+    background-color: darkred;
     color: white;
     text-align: center;
     line-height: 50px;
