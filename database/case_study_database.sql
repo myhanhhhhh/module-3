@@ -369,16 +369,22 @@ having so_luong_hop_dong < 4;
 -- CÂU 16: Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2019 đến năm 2021.
 alter table nhan_vien 
 add is_delete bit(1) default 0;
+
 set sql_safe_updates = 0;
+
 update nhan_vien 
 set is_delete = 1
 where nhan_vien.ma_nhan_vien not in(
 select hop_dong.ma_nhan_vien 
-from hop_dong);
+from hop_dong
+where year(ngay_lam_hop_dong) in (2019,2021));
+
 set sql_safe_updates = 1;
+
 select nhan_vien.ma_nhan_vien, nhan_vien.ho_ten
 from nhan_vien
 where is_delete = 0;
+
 -- CÂU 17:	Cập nhật thông tin những khách hàng có ten_loai_khach từ Platinum lên Diamond, chỉ cập nhật những khách hàng
 --  đã từng đặt phòng với Tổng Tiền thanh toán trong năm 2021 là lớn hơn 10.000.000 VNĐ.
 update khach_hang
@@ -417,3 +423,23 @@ from khach_hang
 where deleted = 0;
 
 -- CÂU 19: Cập nhật giá cho các dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2020 lên gấp đôi.
+set sql_safe_updates = 0;
+update dich_vu_di_kem
+set gia = gia * 2
+where ma_dich_vu_di_kem in (
+select ma_dich_vu_di_kem 
+from hop_dong_chi_tiet 
+join hop_dong on hop_dong.ma_hop_dong = hop_dong_chi_tiet.ma_hop_dong
+where year(hop_dong.ngay_lam_hop_dong) = 2020 
+group by hop_dong_chi_tiet.ma_dich_vu_di_kem
+having sum(hop_dong_chi_tiet.so_luong) > 10);
+set sql_safe_updates = 1;
+
+-- bài 20:	Hiển thị thông tin của tất cả các nhân viên và khách hàng có trong hệ thống, 
+-- thông tin hiển thị bao gồm id (ma_nhan_vien, ma_khach_hang), ho_ten, email, so_dien_thoai, ngay_sinh, dia_chi.
+select nhan_vien.ma_nhan_vien, nhan_vien.ho_ten, nhan_vien.email, nhan_vien.so_dien_thoai, nhan_vien.ngay_sinh, nhan_vien.dia_chi
+from nhan_vien
+union
+select khach_hang.ma_khach_hang, khach_hang.ho_va_ten, khach_hang.email, khach_hang.so_dien_thoai, khach_hang.ngay_sinh, khach_hang.dia_chi
+from khach_hang 
+
