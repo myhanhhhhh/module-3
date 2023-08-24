@@ -11,13 +11,13 @@ nav{
 }
 
 .header  {
-    background-color: #4A4A4A;
+    background-color: black;
     color: white;
     text-align: center;
     line-height: 50px;
 }
 .headers {
-    background-color: lightgray;
+    background-color: whitesmoke;
     color: black;
     text-align: center;
     line-height: 50px;
