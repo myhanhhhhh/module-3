@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/case study/C0523G1_Group_1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/case study/test/test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/jsp:servlet" vcs="Git" />
   </component>
 </project>
