@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/product">Back to page</a>
+<a href="/product">Back to Product List</a>
 <h1>Add Product</h1>
 <form action="/product?action=create" method="post">
     <label for="name">Name</label>
@@ -22,7 +22,7 @@
     <input type="text" id="description" name="description"><br>
     <label for="company">Company</label>
     <input type="text" id="company" name="company"><br>
-    <button type="submit">Add</button>
+    <button type="submit">Add Product</button>
 </form>
 </body>
 </html>
