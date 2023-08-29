@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DiscountServlet", urlPatterns = "/discount-servlet")
+@WebServlet(name = "DiscountServlet", urlPatterns = "/discount")
 public class DiscountServlet extends HttpServlet {
 
     @Override

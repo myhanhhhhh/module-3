@@ -5,7 +5,7 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<form action="/discount-servlet" method="post">
+<form action="/discount" method="post">
   <label>Product Description </label>
   <input type="text" name="description" value="${description}">
   <label>List Price </label>
