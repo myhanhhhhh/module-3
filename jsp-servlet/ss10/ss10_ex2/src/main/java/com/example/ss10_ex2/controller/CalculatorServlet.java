@@ -1,4 +1,6 @@
-import com.example.ss10_ex2.Calculator;
+package com.example.ss10_ex2.controller;
+
+import com.example.ss10_ex2.service.Calculator;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

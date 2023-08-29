@@ -1,4 +1,4 @@
-package com.example.ss10_ex2;
+package com.example.ss10_ex2.service;
 
 import java.util.Objects;
 
