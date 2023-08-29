@@ -1,4 +1,4 @@
-create database booking;
+Create database booking;
 use booking;
 
 CREATE TABLE account_customers (
@@ -52,7 +52,6 @@ CREATE TABLE bookings (
 	is_delete BIT(1)  DEFAULT 0
 );
 
-
 CREATE TABLE image_detail_links (
     image_id INT PRIMARY KEY AUTO_INCREMENT,
     villa_id INT,
@@ -75,14 +74,6 @@ values
 ( "Lê Văn Bình", "362300012001", "2000-03-19", 0, "0934706085", "30, Đường Nguyễn Huệ, Thành phố Hồ Chí Minh, Tỉnh Hồ Chí Minh", "levanbinh@gmail.com", 3),
 ( "Nguyễn Ngọc Hân", "362300012001", "1999-08-18", 1, "0905937963","9, Đường Trần Phú, Thành phố Hội An, Tỉnh Quảng Nam", "nguyenngochan1999@gmail.com", 4);
 
-
-insert into bookings(customer_code, booking_checkin, booking_checkout, deposit, villa_id)
-values
-(1, "2022-05-12",  "2022-05-17", 1620000, 1),
-(2, "2023-03-03", "2023-03-09", 3087000, 2),
-(3, "2022-07-15", "2022-07-21", 1792000, 3),
-(4, "2023-06-12", "2023-06-17", 834000, 4);
-
 insert into villas (image_map, area, `level`, width, deep, garage, gym_room, relax_room, toilet, living_room, kitchen_room, bedroom, price)
 values
 ("https://drive.google.com/uc?id=1nc-sqvrPl7lxW4GggOJZQjyp0a5AC7y", 540, 3, 15, 12, 0, 0 , 1, 3, 1, 1, 5, 2700000),
@@ -95,6 +86,14 @@ values
 ("https://drive.google.com/uc?id=1IvGoqItZmiMmnkifriCvte_KK_m9-7Od", 465, 3, 8.5, 18, 0, 1, 2, 3, 1, 1, 3, 2325000),
 ("https://drive.google.com/uc?id=1IvGoqItZmiMmnkifriCvte_KK_m9-7Od", 1142, 2, 19, 28, 1, 9, 0, 7, 1, 1, 8, 5710000),
 ("https://drive.google.com/uc?id=1EEkZ-sZsolg7kQ2VT18ZUIe1aAHGOWDK", 746, 3, 17.2, 13.3, 1, 0, 0, 6, 1, 1, 6, 3730000);
+
+insert into bookings(customer_code, booking_checkin, booking_checkout, deposit, villa_id)
+values
+(1, "2022-05-12",  "2022-05-17", 1620000, 1),
+(2, "2023-03-03", "2023-03-09", 3087000, 2),
+(3, "2022-07-15", "2022-07-21", 1792000, 3),
+(4, "2023-06-12", "2023-06-17", 834000, 4);
+
 
 insert into image_detail_links(villa_id, image_detail)
 values

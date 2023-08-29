@@ -1,4 +1,4 @@
-package com.example.ss9;
+package com.example.ss9.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

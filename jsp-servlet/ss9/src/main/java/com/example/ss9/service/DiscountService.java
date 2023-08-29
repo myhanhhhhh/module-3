@@ -1,2 +1,5 @@
-package com.example.ss9.service;public class DiscountService {
+package com.example.ss9.service;
+
+public class DiscountService {
+
 }
