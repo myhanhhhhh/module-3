@@ -1,6 +1,6 @@
-package service;
+package com.example.ss11.service;
 
-import model.Product;
+import com.example.ss11.model.Product;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ public interface IProductService {
 
     void create(Product product);
 
-    void update(int id, Product product);
+    void update( Product product);
 
     Product findById(int id);
 
     void delete(int id);
-    Product search(String name);
+   List<Product>  search(String name);
 }

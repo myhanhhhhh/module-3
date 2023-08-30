@@ -1,8 +1,7 @@
-package repository;
+package com.example.ss11.repository;
 
-import model.Product;
+import com.example.ss11.model.Product;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface IProductRepository {
@@ -10,13 +9,13 @@ public interface IProductRepository {
 
     void create(Product product);
 
-    void update(int id, Product product);
+    void update( Product product);
 
     Product findById(int id);
 
     void delete(int id);
 
-    Product search(String name);
+   List<Product>  search(String name);
 
 }
 

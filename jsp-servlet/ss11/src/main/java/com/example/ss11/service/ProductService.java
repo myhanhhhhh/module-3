@@ -1,8 +1,8 @@
-package service;
+package com.example.ss11.service;
 
-import model.Product;
-import repository.IProductRepository;
-import repository.ProductRepository;
+import com.example.ss11.model.Product;
+import com.example.ss11.repository.IProductRepository;
+import com.example.ss11.repository.ProductRepository;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void update(int id, Product product) {
-        repository.update(id, product);
+    public void update( Product product) {
+        repository.update( product);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product search(String name) {
+    public List<Product>  search(String name) {
         return repository.search(name);
     }
 }

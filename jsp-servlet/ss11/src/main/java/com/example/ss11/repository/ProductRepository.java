@@ -1,20 +1,19 @@
-package repository;
+package com.example.ss11.repository;
 
-import model.Product;
+import com.example.ss11.model.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepository implements IProductRepository {
-    private static final String SELECT = "SELECT * FROM products";
+    private static final String SELECT = "SELECT * FROM products where is_delete= b'0' ";
     private static final String INSERT = "insert into products (name, price, description, company ) " + " values(?,?,?,?) ";
-    private static final String SELECT_BY_ID = "select *from products\n" + "where id =?";
-    private static final String UPDATE = "update products set  name = ?" + " price = ?" + "description = ?" + "company = ?"
-            + "where id = ?";
-    public static final String DELETE = "delete from product where id = ?";
+    private static final String SELECT_BY_ID = "select * from products where id =?";
+    private static final String UPDATE = "update products set  name = ?,  price = ?, description = ?, company = ? where id = ?";
+    public static final String DELETE = "update products set is_delete = b'1' where id = ?";
 
-    public static final String SEARCH = "select * from product where name = ?;";
+    public static final String SEARCH = "select * from products where name like ?;";
 
 
     @Override
@@ -25,11 +24,12 @@ public class ProductRepository implements IProductRepository {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SELECT);
             while (resultSet.next()) {
+                int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String company = resultSet.getString("company");
-                list.add(new Product(name, price, description, company));
+                list.add(new Product(id, name, price, description, company));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -53,7 +53,7 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void update(int id, Product product) {
+    public void update( Product product) {
         Connection connection = BaseRepository.getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
@@ -61,7 +61,7 @@ public class ProductRepository implements IProductRepository {
             preparedStatement.setDouble(2, product.getPrice());
             preparedStatement.setString(3, product.getDescription());
             preparedStatement.setString(4, product.getCompany());
-            preparedStatement.setInt(5, id);
+            preparedStatement.setInt(5, product.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -81,7 +81,7 @@ public class ProductRepository implements IProductRepository {
                 Double price = resultSet.getDouble("price");
                 String description = resultSet.getString("description");
                 String company = resultSet.getString("company");
-                product = new Product(name, price, description, company);
+                product = new Product(id, name, price, description, company);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -102,9 +102,9 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product search(String name) {
+    public List<Product>  search(String name) {
         Connection connection = BaseRepository.getConnection();
-        Product product = null;
+        List<Product> list = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH);
             preparedStatement.setString(1, name);
@@ -115,12 +115,12 @@ public class ProductRepository implements IProductRepository {
                 double priceSearch = resultSet.getDouble("price");
                 String deescriptionSearch = resultSet.getString("description");
                 String companydSearch = resultSet.getString("company");
-                product = new Product(id, nameSearch, priceSearch, deescriptionSearch, companydSearch);
+               list.add(new Product(id, nameSearch, priceSearch, deescriptionSearch, companydSearch)) ;
             }
             connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return product;
+        return list;
     }
 }

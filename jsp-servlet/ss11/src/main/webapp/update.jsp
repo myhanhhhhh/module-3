@@ -20,14 +20,15 @@
 <%--    </c:if>--%>
 <%--</p>--%>
 <form action="/product?action=update" method="post">
+    <input name="id" type="hidden" value="${product.id}"/>
     <label for="name">Name</label>
-    <input type="text" name="name" id="name"><br>
+    <input type="text" name="name" id="name" value="${product.name}"><br>
     <label for="price">Price</label>
-    <input type="text" name="price" id="price" ><br>
+    <input type="number" name="price" id="price" value="${product.price}"><br>
     <label for="description">Description</label>
-    <input type="text" name="description" id="description" ><br>
+    <input type="text" name="description" id="description" value="${product.description}"><br>
     <label for="company">Company</label>
-    <input type="text" name="company" id="company" ><br>
+    <input type="text" name="company" id="company" value="${product.company}"><br>
     <button type="submit">Update Product</button>
 </form>
 </body>

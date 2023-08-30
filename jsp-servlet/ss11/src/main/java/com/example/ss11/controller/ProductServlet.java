@@ -1,8 +1,8 @@
-package controller;
+package com.example.ss11.controller;
 
-import model.Product;
-import service.IProductService;
-import service.ProductService;
+import com.example.ss11.model.Product;
+import com.example.ss11.service.IProductService;
+import com.example.ss11.service.ProductService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
-import static java.nio.file.Files.delete;
 
 @WebServlet(name = "ProductServlet", value = "/product")
 
@@ -34,9 +32,9 @@ public class ProductServlet extends HttpServlet {
             case "update":
                 showformupdate(req, resp);
                 break;
-            case "delete":
-                showformdelete(req, resp);
-                break;
+////            case "delete":
+//                showformdelete(req, resp);
+//                break;
             case "search":
                 showformsearch(req, resp);
                 break;
@@ -106,7 +104,7 @@ public class ProductServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = service.findById(id);
         request.setAttribute("product", product);
-        request.getRequestDispatcher("update.jsp").forward(request, response);
+        request.getRequestDispatcher("/update.jsp").forward(request, response);
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -115,26 +113,21 @@ public class ProductServlet extends HttpServlet {
         double price = Double.parseDouble(req.getParameter("price"));
         String description = req.getParameter("description");
         String company = req.getParameter("company");
-        Product product = service.findById(id);
-        product.setName(name);
-        product.setPrice(price);
-        product.setDescription(description);
-        product.setCompany(company);
-        service.update(id, product);
-        req.setAttribute("product", product);
-        req.getRequestDispatcher("update.jsp").forward(req, resp);
-    }
-
-    private void showformdelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        Product product = service.findById(id);
-        req.setAttribute("product", product);
-        req.getRequestDispatcher("/delete.jsp").forward(req, resp);
+        Product product = new Product(id,name,price,description,company);
+        service.update(product);
+//        Product product = service.findById(id);
+//        product.setName(name);
+//        product.setPrice(price);
+//        product.setDescription(description);
+//        product.setCompany(company);
+//        service.update(id, product);
+//        req.setAttribute("product", product);
+        req.getRequestDispatcher("/update.jsp").forward(req, resp);
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        Product product = service.findById(id);
+        int id = Integer.parseInt(req.getParameter("id_delete"));
+//        Product product = service.findById(id);
         service.delete(id);
         resp.sendRedirect("/product");
     }
@@ -144,9 +137,9 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void search(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("search");
-        Product product = service.search(name);
-        req.setAttribute("product", product);
-        req.getRequestDispatcher("/views/search.jsp").forward(req, resp);
+        String name = req.getParameter("name");
+        List<Product> list = service.search(name);
+        req.setAttribute("list", list);
+        req.getRequestDispatcher("/search.jsp").forward(req, resp);
     }
 }
