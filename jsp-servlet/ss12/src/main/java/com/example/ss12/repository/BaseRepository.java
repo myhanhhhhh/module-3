@@ -1,4 +1,4 @@
-package repository;
+package com.example.ss12.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

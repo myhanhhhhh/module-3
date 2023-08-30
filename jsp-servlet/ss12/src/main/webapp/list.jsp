@@ -18,12 +18,20 @@
 </head>
 <body>
 <a href="/user?action=create">
-    <button type="button" class="btn btn-primary"><ion-icon name="person-add"></ion-icon></button>
+    <button type="button" class="btn btn-primary">
+        <ion-icon name="person-add"></ion-icon>
+    </button>
 </a>
-<%--<a href="/user?action=search">--%>
-<%--    <button type="button" class="btn btn-primary"><ion-icon name="search"></ion-icon></button>--%>
-<%--    <br><br>--%>
-<%--</a>--%>
+<a href="/user?action=search">
+    <button type="button" class="btn btn-primary">
+        <ion-icon name="search"></ion-icon>
+    </button>
+</a>
+<a href="/user?action=sort">
+    <button type="button" class="btn btn-primary">
+        <ion-icon name="funnel"></ion-icon>
+    </button>
+</a>
 <table class="table table-hover" style="text-align: center">
     <thead>
     <tr>
@@ -42,12 +50,15 @@
             <td><c:out value="${p.country}"/></td>
             <td>
                 <a href="/user?action=update&id=${p.getId()}">
-                    <button type="button" class="btn btn-primary"><ion-icon name="create"></ion-icon></button>
+                    <button type="button" class="btn btn-primary">
+                        <ion-icon name="create"></ion-icon>
+                    </button>
                 </a>
             </td>
             <td>
                 <button onclick="sendInForToModal('${p.id}','${p.name}')" type="button" class="btn btn-danger"
-                        data-bs-toggle="modal" data-bs-target="#exampleModal"><ion-icon name="trash"></ion-icon>
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <ion-icon name="trash"></ion-icon>
                 </button>
             </td>
         </tr>
@@ -61,7 +72,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/product?action=delete" method="post">
+            <form action="/user?action=delete" method="post">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Product</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -88,6 +99,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
 </body>
 </html>

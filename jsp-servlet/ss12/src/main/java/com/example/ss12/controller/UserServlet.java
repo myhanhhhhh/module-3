@@ -1,8 +1,9 @@
-package controller;
+package com.example.ss12.controller;
 
-import com.example.ss12.HelloServlet;
-import model.User;
-import repository.UserRepository;
+
+import com.example.ss12.controller.HelloServlet;
+import com.example.ss12.model.User;
+import com.example.ss12.repository.UserRepository;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,10 +36,16 @@ public class UserServlet extends HttpServlet {
             case "search":
                 showformsearch(req, resp);
                 break;
+            case "sort":
+                showformsort(req, resp);
+                break;
             default:
                 getAll(req, resp);
+                break;
+
         }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -61,7 +68,9 @@ public class UserServlet extends HttpServlet {
                 search(req, resp);
                 break;
             default:
+                getAll(req, resp);
                 break;
+
         }
     }
 
@@ -108,8 +117,8 @@ public class UserServlet extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String country = req.getParameter("country");
-        User product = new User(name, email, country);
-        userRepository.update(product);
+        User user = new User(id, name, email, country);
+        userRepository.update(user);
         req.getRequestDispatcher("/update.jsp").forward(req, resp);
     }
 
@@ -120,14 +129,23 @@ public class UserServlet extends HttpServlet {
     }
 
     private void showformsearch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("search.jsp").forward(req, resp);
+        req.getRequestDispatcher("/search.jsp").forward(req, resp);
     }
 
     private void search(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String name = req.getParameter("name");
-//        List<User> list = userRepository.s(name);
-//        req.setAttribute("list", list);
-//        req.getRequestDispatcher("/search.jsp").forward(req, resp);
+        String country = req.getParameter("country");
+        List<User> list = userRepository.search(country);
+        req.setAttribute("list", list);
+        req.getRequestDispatcher("/search.jsp").forward(req, resp);
     }
 
+    private void showformsort(HttpServletRequest req, HttpServletResponse resp) {
+        List<User> list = userRepository.sort();
+        req.setAttribute("list", list);
+        try {
+            req.getRequestDispatcher("/list.jsp").forward(req, resp);
+        } catch (ServletException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

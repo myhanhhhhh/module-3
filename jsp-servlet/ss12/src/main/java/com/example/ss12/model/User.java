@@ -1,4 +1,5 @@
-package model;
+package com.example.ss12.model;
+
 
 public class User {
     protected int id;
