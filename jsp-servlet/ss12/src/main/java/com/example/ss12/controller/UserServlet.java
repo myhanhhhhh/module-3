@@ -1,9 +1,9 @@
 package com.example.ss12.controller;
 
 
-import com.example.ss12.controller.HelloServlet;
 import com.example.ss12.model.User;
-import com.example.ss12.repository.UserRepository;
+import com.example.ss12.service.IUserService;
+import com.example.ss12.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,9 +17,10 @@ import java.util.List;
 @WebServlet(name = "UserServlet", value = "/user")
 
 public class UserServlet extends HttpServlet {
-    private UserRepository userRepository = new UserRepository();
+    private IUserService userService = new UserService();
 
     @Override
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
@@ -75,7 +76,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void getAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> list = userRepository.getAll();
+        List<User> list = userService.getAll();
         req.setAttribute("list", list);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/list.jsp");
         requestDispatcher.forward(req, resp);
@@ -97,7 +98,7 @@ public class UserServlet extends HttpServlet {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String country = req.getParameter("country");
-        userRepository.create(new User(name, email, country));
+        userService.create(new User(name, email, country));
         try {
             resp.sendRedirect("/user");
         } catch (IOException e) {
@@ -107,7 +108,7 @@ public class UserServlet extends HttpServlet {
 
     private void showformupdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        User user = userRepository.findById(id);
+        User user = userService.findById(id);
         request.setAttribute("user", user);
         request.getRequestDispatcher("/update.jsp").forward(request, response);
     }
@@ -118,13 +119,13 @@ public class UserServlet extends HttpServlet {
         String email = req.getParameter("email");
         String country = req.getParameter("country");
         User user = new User(id, name, email, country);
-        userRepository.update(user);
+        userService.update(user);
         req.getRequestDispatcher("/update.jsp").forward(req, resp);
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int id = Integer.parseInt(req.getParameter("id_delete"));
-        userRepository.delete(id);
+        userService.delete(id);
         resp.sendRedirect("/user");
     }
 
@@ -134,13 +135,13 @@ public class UserServlet extends HttpServlet {
 
     private void search(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String country = req.getParameter("country");
-        List<User> list = userRepository.search(country);
+        List<User> list = userService.search(country);
         req.setAttribute("list", list);
         req.getRequestDispatcher("/search.jsp").forward(req, resp);
     }
 
     private void showformsort(HttpServletRequest req, HttpServletResponse resp) {
-        List<User> list = userRepository.sort();
+        List<User> list = userService.sort();
         req.setAttribute("list", list);
         try {
             req.getRequestDispatcher("/list.jsp").forward(req, resp);
