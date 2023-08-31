@@ -1,10 +1,11 @@
-package com.example.ex1.service;
+package com.example.ex1.repository;
 
 import com.example.ex1.model.User;
 
 import java.util.List;
 
-public interface IUserService {
+public interface IUserRepository {
+
     List<User> getAll();
 
     void update(User user);
@@ -12,5 +13,8 @@ public interface IUserService {
     User findById(int id);
 
     void delete(int id);
+    void addUTransaction(User user);
+
 
 }
+

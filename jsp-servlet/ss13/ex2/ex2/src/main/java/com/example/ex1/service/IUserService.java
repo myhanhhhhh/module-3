@@ -12,5 +12,6 @@ public interface IUserService {
     User findById(int id);
 
     void delete(int id);
+    void addTransaction(User user);
 
 }

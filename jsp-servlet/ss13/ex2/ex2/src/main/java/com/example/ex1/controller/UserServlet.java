@@ -67,10 +67,27 @@ public class UserServlet extends HttpServlet {
             case "delete":
                 delete(req, resp);
                 break;
+            case "addTransaction":
+                addTransaction(req, resp);
+                break;
             default:
                 getAll(req, resp);
                 break;
         }
+    }
+
+    private void addTransaction(HttpServletRequest req, HttpServletResponse resp) {
+        String name = req.getParameter("name");
+        String email = req.getParameter("email");
+        String country = req.getParameter("country");
+        User user = new User(name, email, country);
+        this.service.addTransaction(user);
+        try {
+            resp.sendRedirect("/user");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

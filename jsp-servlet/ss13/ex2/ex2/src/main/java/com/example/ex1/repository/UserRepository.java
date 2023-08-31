@@ -13,6 +13,7 @@ public class UserRepository implements IUserRepository {
     private static final String UPDATE = "call edit_info_user(?,?,?,?)";
     private static final String FIND_BY_ID = "call find_by_id(?)";
     private static final String DELETE = "call delete_user(?)";
+    private static final String ADD_TRANSACTION = "insert into users(name,email, country) values (?,?,?)";
 
     @Override
     public List<User> getAll() {
@@ -78,6 +79,29 @@ public class UserRepository implements IUserRepository {
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void addUTransaction(User user) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = BaseRepository.getConnection();
+            connection.setAutoCommit(false);
+            preparedStatement = connection.prepareStatement(ADD_TRANSACTION);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getCountry());
+            int rowEffected = preparedStatement.executeUpdate();
+
+            if (rowEffected == 1) {
+                connection.commit();
+            } else {
+                connection.rollback();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

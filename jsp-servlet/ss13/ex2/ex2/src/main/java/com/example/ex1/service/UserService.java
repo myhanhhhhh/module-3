@@ -29,4 +29,9 @@ public class UserService implements IUserService {
     public void delete(int id) {
         repository.delete(id);
     }
+
+    @Override
+    public void addTransaction(User user) {
+        repository.addUTransaction(user);
+    }
 }
