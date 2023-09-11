@@ -5,10 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="634ad61f-90ef-4331-97dd-1745364cb952" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ss12/service/IUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ss12/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ss11/src/main/webapp/admin.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ss11/src/main/webapp/css/admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/admin/src/main/java/controller/EmployeeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/admin/src/main/java/controller/EmployeeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/admin/src/main/java/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/admin/src/main/java/model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/admin/src/main/java/repository/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/admin/src/main/java/repository/BaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/admin/src/main/java/repository/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/admin/src/main/java/repository/EmployeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/admin/src/main/java/repository/IEmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/admin/src/main/java/repository/IEmployeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/admin/src/main/java/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/admin/src/main/java/service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/admin/src/main/java/service/IEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/admin/src/main/java/service/IEmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/admin/src/main/webapp/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/admin/src/main/webapp/account.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/admin/src/main/webapp/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/admin/src/main/webapp/list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../database/ss11.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../database/ss11.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss10/ss10_ex1/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ss10/ss10_ex1/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss11/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ss11/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss11/src/main/java/com/example/ss11/controller/ProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ss11/src/main/java/com/example/ss11/controller/ProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ss12/controller/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ss12/controller/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ss12/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ss12/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/search.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +36,23 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ss12" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -51,6 +85,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/myhanh/Documents/module-3/jsp-servlet/ss12",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -160,7 +195,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693401272300</updated>
-      <workItem from="1693401273323" duration="8679000" />
+      <workItem from="1693401273323" duration="11617000" />
+      <workItem from="1693585078182" duration="222000" />
     </task>
     <servers />
   </component>
@@ -172,7 +208,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/ss12/controller/UserServlet.java</url>
-          <line>108</line>
+          <line>107</line>
           <properties class="com.example.ss12.controller.UserServlet" method="showformupdate">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -181,7 +217,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/ss12/controller/UserServlet.java</url>
-          <line>115</line>
+          <line>114</line>
           <properties class="com.example.ss12.controller.UserServlet" method="update">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -199,7 +235,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/ss12/controller/UserServlet.java</url>
-          <line>142</line>
+          <line>141</line>
           <properties class="com.example.ss12.controller.UserServlet" method="showformsort">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

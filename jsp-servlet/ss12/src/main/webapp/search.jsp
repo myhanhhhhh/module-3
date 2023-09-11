@@ -25,13 +25,10 @@
 <div align="center">
     <form action="user?action=search" method="post">
         <table border="1" cellpadding="3" style='border-collapse: collapse' cellPadding="10">
-            <caption>
-                <h3 style="text-align: center">Users Be Searched</h3>
-            </caption>
             <tr>
                 <th>Country:</th>
                 <td>
-                    <input type="text" name="country" id="country"  size="60"/>
+                    <input type="text" name="country" id="country"  size="40"/>
                 </td>
             </tr>
             <tr>

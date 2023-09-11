@@ -1,4 +1,5 @@
 package controller;
 
-public class AdminServlet {
+public class EmployeeServlet {
+
 }

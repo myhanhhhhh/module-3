@@ -71,7 +71,7 @@ public class ProductServlet extends HttpServlet {
     private void getAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Product> list = service.getAll();
         req.setAttribute("list", list);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("list.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("admin.jsp");
         requestDispatcher.forward(req, resp);
     }
 

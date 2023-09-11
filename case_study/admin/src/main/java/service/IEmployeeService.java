@@ -1,2 +1,4 @@
-package service;public interface IEmployeeService {
+package service;
+
+public interface IEmployeeService {
 }

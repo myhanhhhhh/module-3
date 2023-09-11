@@ -30,7 +30,7 @@
 <a href="/user?action=sort">
     <button type="button" class="btn btn-primary">
         <ion-icon name="funnel"></ion-icon>
-    </button>
+    </button><br><br>
 </a>
 <table class="table table-hover" style="text-align: center">
     <thead>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="id_delete" name="id_delete">
-                    Are you sure delete product <span id="name_delete" class="text-danger"></span>
+                    Are you sure delete user <span id="name_delete" class="text-danger"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

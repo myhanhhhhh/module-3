@@ -14,9 +14,9 @@ public class UserRepository implements IUserRepository {
     private static final String UPDATE = "update users set  name = ?,  email = ?, country = ? where id = ?";
     public static final String DELETE = "update users set is_delete = b'1' where id = ?";
 
-    public static final String SEARCH = "select * from users where country like ?;";
+    public static final String SEARCH = "select * from users where country like ? and is_delete = b'0' ;";
 
-    private static final String SORT = "select * from users order by name";
+    private static final String SORT = "select * from users order by name ";
 
 
     @Override
@@ -112,8 +112,8 @@ public class UserRepository implements IUserRepository {
                 int id = resultSet.getInt("id");
                 String nameSearch = resultSet.getString("name");
                 String emailSearch = resultSet.getString("email");
-                String countrySearch = resultSet.getString("country");
-                list.add(new User(id, nameSearch, emailSearch, countrySearch));
+//                String countrySearch = resultSet.getString("country");
+                list.add(new User(id, nameSearch, emailSearch, country));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

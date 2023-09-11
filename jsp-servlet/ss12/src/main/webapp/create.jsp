@@ -23,7 +23,7 @@
     <form action="user?action=create" method="post">
         <table border="1" cellpadding="3" style='border-collapse: collapse' cellPadding="10">
             <caption>
-                <h3>Add New User</h3>
+                <h3>Create User</h3>
             </caption>
             <tr>
                 <th>User Name:</th>

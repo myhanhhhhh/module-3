@@ -71,7 +71,6 @@ public class UserServlet extends HttpServlet {
             default:
                 getAll(req, resp);
                 break;
-
         }
     }
 
